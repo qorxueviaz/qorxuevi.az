@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Təhlükə — Qorxuevi.az</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Iconlar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Montserrat & Creepster -->
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #08080a;
+            color: #e2e8f0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .font-horror {
+            font-family: 'Creepster', cursive;
+        }
+
+        .glitch-text {
+            text-shadow: 0 0 10px #ff003c;
+        }
+
+        /* Görseldeki Yuvarlak Sosyal Medya Düğmeleri */
+        .social-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid #ff3b00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff3b00;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background-color: #ff3b00;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(255, 59, 0, 0.5);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #08080a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #33000d;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- Üst Menü / Navbar -->
+    <header class="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b border-red-900/40 px-4 py-4">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3">
+                <i class="fa-solid fa-ghost text-red-600 text-3xl"></i>
+                <span class="font-horror text-3xl tracking-widest text-red-600 glitch-text">QORXUEVI.AZ</span>
+            </a>
+            <a href="index.html" class="text-zinc-400 hover:text-white font-semibold text-sm flex items-center">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Ana Səhifə
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full space-y-8">
+        
+        <!-- Oyun Başlığı -->
+        <div class="text-center">
+            <h1 class="font-horror text-5xl md:text-6xl text-red-600 tracking-wide mb-2">TƏHLÜKƏ</h1>
+            <p class="text-zinc-400 text-sm">Kabus Tarqovu Filialı</p>
+        </div>
+
+        <!-- 1. Şəkil / Banner -->
+        <div class="w-full h-80 md:h-[450px] rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl">
+            <img src="Tehluke.PNG" alt="Təhlükə Oyunu" class="w-full h-full object-cover">
+        </div>
+
+        <!-- 2. İnfoqrafik Qutuları (Görsel 2 Formatında) -->
+        <div class="grid grid-cols-3 gap-4 text-center">
+            <div class="bg-zinc-900/80 border border-zinc-800 p-4 rounded-2xl">
+                <i class="fa-solid fa-users text-red-500 text-2xl mb-2"></i>
+                <div class="text-xs text-zinc-400 font-medium">Oyunçu Sayı</div>
+                <div class="font-bold text-white text-base md:text-lg mt-1">2-20 Nəfər</div>
+            </div>
+
+            <div class="bg-zinc-900/80 border border-zinc-800 p-4 rounded-2xl">
+                <i class="fa-solid fa-clock text-red-500 text-2xl mb-2"></i>
+                <div class="text-xs text-zinc-400 font-medium">Müddət</div>
+                <div class="font-bold text-white text-base md:text-lg mt-1">Zaman limitsiz</div>
+            </div>
+
+            <div class="bg-zinc-900/80 border border-zinc-800 p-4 rounded-2xl">
+                <i class="fa-solid fa-star text-yellow-500 text-2xl mb-2"></i>
+                <div class="text-xs text-zinc-400 font-medium">Reytinq</div>
+                <div class="text-yellow-500 text-sm md:text-base mt-1 tracking-widest">⭐⭐⭐⭐⭐</div>
+            </div>
+        </div>
+
+        <!-- 3. Şube Bilgileri & Sosyal Medya (Görsel 3 Formatında) -->
+        <div class="bg-zinc-900/90 border border-zinc-800/90 rounded-2xl p-6 md:p-8 text-center space-y-6">
+            <div>
+                <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Kabus Tarqovu Filialı</h2>
+                
+                <!-- Telefon Nömrəsi -->
+                <div class="flex items-center justify-center space-x-2 text-xl font-bold text-white mb-3">
+                    <i class="fa-solid fa-phone text-orange-500"></i>
+                    <!-- Nömrəni bura yazacaqsan -->
+                    <span>+994 XX XXX XX XX</span>
+                </div>
+
+                <!-- Ünvan -->
+                <div class="flex flex-col items-center justify-center text-zinc-300 font-medium">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-location-dot text-orange-500"></i>
+                        <span>Bəşir Səfəroğlu 195</span>
+                    </div>
+                    <!-- Google Maps Linki -->
+                    <a href="GOOGLE_MAPS_LINKINI_BURA_YAPISDIR" target="_blank" class="text-orange-500 hover:underline text-sm mt-1 flex items-center">
+                        Xəritədə göstər <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Sosyal Medya Butonları (Dairevi) -->
+            <div class="flex items-center justify-center space-x-4 pt-2">
+                <!-- Instagram -->
+                <a href="INSTAGRAM_LINKI" target="_blank" class="social-btn" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <!-- TikTok -->
+                <a href="TIKTOK_LINKI" target="_blank" class="social-btn" title="TikTok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+                <!-- WhatsApp -->
+                <a href="https://wa.me/994XXXXXXXXX" target="_blank" class="social-btn" title="WhatsApp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- 4. Rezervasyon Formu (Maksimum 5 Gün Sınırı İle) -->
+        <div id="booking-section" class="bg-zinc-900/90 border border-red-900/60 p-6 md:p-8 rounded-2xl shadow-2xl">
+            <h3 class="font-bold text-2xl text-white mb-6 flex items-center border-b border-zinc-800 pb-4">
+                <i class="fa-solid fa-calendar-check text-red-600 mr-3"></i> REZERVA SİYA ET
+            </h3>
+
+            <form id="booking-form" onsubmit="handleBooking(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs text-zinc-400 uppercase font-semibold mb-2">AD VƏ SOYAD</label>
+                    <input type="text" required id="book-name" placeholder="Məsələn: Əli Əliyev" class="w-full bg-black/70 border border-zinc-800 rounded-xl p-3.5 text-white focus:outline-none focus:border-red-600 transition">
+                </div>
+
+                <div>
+                    <label class="block text-xs text-zinc-400 uppercase font-semibold mb-2">TELEFON NÖMRƏSİ</label>
+                    <input type="tel" required id="book-phone" placeholder="050 123 45 67" class="w-full bg-black/70 border border-zinc-800 rounded-xl p-3.5 text-white focus:outline-none focus:border-red-600 transition">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs text-zinc-400 uppercase font-semibold mb-2">TARİX (MAKS 5 GÜN)</label>
+                        <input type="date" required id="book-date" class="w-full bg-black/70 border border-zinc-800 rounded-xl p-3.5 text-white focus:outline-none focus:border-red-600 transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-zinc-400 uppercase font-semibold mb-2">SAAT</label>
+                        <input type="time" required id="book-time" class="w-full bg-black/70 border border-zinc-800 rounded-xl p-3.5 text-white focus:outline-none focus:border-red-600 transition">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs text-zinc-400 uppercase font-semibold mb-2">OYUNÇU SAYI</label>
+                    <select id="book-count" class="w-full bg-black/70 border border-zinc-800 rounded-xl p-3.5 text-white focus:outline-none focus:border-red-600 transition">
+                        <option value="2-4 Nəfər">2 - 4 Nəfər</option>
+                        <option value="5-8 Nəfər">5 - 8 Nəfər</option>
+                        <option value="8-12 Nəfər">8 - 12 Nəfər</option>
+                        <option value="12-20 Nəfər">12 - 20 Nəfər</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-red-900 to-red-600 hover:from-red-800 hover:to-red-500 text-white font-bold py-4 rounded-xl transition text-base tracking-wider mt-4 shadow-lg shadow-red-900/30">
+                    İNDİ REZERVA SİYA ET
+                </button>
+            </form>
+        </div>
+
+    </main>
+
+    <footer class="border-t border-zinc-900 py-6 text-center text-xs text-zinc-500">
+        <p>© 2026 QORXUEVI.AZ — Bütün hüquqlar qorunur.</p>
+    </footer>
+
+    <!-- JS: 5 Günlük Limit ve Rezervasyon Kaydı -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            setupDateLimits();
+        });
+
+        // Maksimum 5 Günlük Tarix Seçimi Məhdudiyyəti
+        function setupDateLimits() {
+            const dateInput = document.getElementById('book-date');
+            const today = new Date();
+            
+            // Bugünün tarixi (YYYY-MM-DD)
+            const minDate = today.toISOString().split('T')[0];
+            
+            // Bugünden itibaren 5 gün sonrası
+            const maxDateObj = new Date();
+            maxDateObj.setDate(today.getDate() + 5);
+            const maxDate = maxDateObj.toISOString().split('T')[0];
+
+            dateInput.min = minDate;
+            dateInput.max = maxDate;
+        }
+
+        // Rezervasyon Gönderme
+        function handleBooking(e) {
+            e.preventDefault();
+            
+            let reservations = JSON.parse(localStorage.getItem('qorxu_reservations')) || [];
+
+            const newRes = {
+                id: Date.now(),
+                gameTitle: 'Təhlükə',
+                branch: 'Kabus Tarqovu Filialı',
+                name: document.getElementById('book-name').value,
+                phone: document.getElementById('book-phone').value,
+                date: document.getElementById('book-date').value,
+                time: document.getElementById('book-time').value,
+                count: document.getElementById('book-count').value,
+                status: 'Gözləmədə'
+            };
+
+            reservations.push(newRes);
+            localStorage.setItem('qorxu_reservations', JSON.stringify(reservations));
+
+            alert('Təbrik edirik! Təhlükə oyunu üçün rezervasiyanız uğurla qeydə alındı.');
+            document.getElementById('booking-form').reset();
+        }
+    </script>
+</body>
+</html>
