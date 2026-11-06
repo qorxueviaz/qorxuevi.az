@@ -15,7 +15,6 @@
         :root {
             --primary-red: #ff003c;
             --dark-bg: #070709;
-            --card-bg: #111116;
         }
 
         body {
@@ -51,18 +50,6 @@
             border-color: rgba(255, 0, 60, 0.5);
         }
 
-        /* Səhifə Tab Keçidləri */
-        .tab-content {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        .tab-content.active {
-            display: block;
-            opacity: 1;
-        }
-
         /* Xüsusi Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
@@ -81,9 +68,9 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between">
 
-    <!-- NAVİQASİYA PANALİ (ÜST HİSSƏ) -->
+    <!-- NAVİQASİYA PANELİ (ÜST HİSSƏ) -->
     <header class="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b border-red-900/40 px-4 py-4">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
             
             <!-- Logo: KABUS & PANIKA -->
             <a href="index.html" class="flex items-center space-x-3 text-decoration-none">
@@ -91,17 +78,7 @@
                 <span class="font-horror text-3xl tracking-widest text-red-600 glitch-text">KABUS & PANIKA</span>
             </a>
 
-            <!-- Yuxarı Menü Düymələri (Oyunlar / Cinema) -->
-            <div class="flex items-center space-x-2 bg-zinc-900/90 border border-zinc-800 p-1 rounded-xl">
-                <button id="tab-games-btn" onclick="switchTab('games')" class="px-5 py-2 rounded-lg text-sm font-bold text-white bg-red-700 transition">
-                    <i class="fa-solid fa-gamepad mr-2"></i>OYUNLAR
-                </button>
-                <button id="tab-cinema-btn" onclick="switchTab('cinema')" class="px-5 py-2 rounded-lg text-sm font-bold text-zinc-400 hover:text-white transition">
-                    <i class="fa-solid fa-film mr-2"></i>CINEMA
-                </button>
-            </div>
-
-            <!-- Şəhər Filtri -->
+            <!-- Şəhər Filtri (Yalnız burada qaldı) -->
             <div class="flex items-center space-x-2 bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2">
                 <i class="fa-solid fa-location-dot text-red-500"></i>
                 <select id="city-select" onchange="filterGamesByCity()" class="bg-transparent text-white font-medium focus:outline-none cursor-pointer text-xs md:text-sm">
@@ -118,7 +95,7 @@
     <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
         
         <!-- OYUNLAR BÖLMƏSİ -->
-        <section id="games-tab" class="tab-content active">
+        <section class="mb-12">
             <div class="text-center my-6">
                 <h1 class="font-horror text-4xl md:text-6xl text-red-600 tracking-wider mb-2">QORXULARINLA ÜZLƏŞ</h1>
                 <p class="text-zinc-400 text-sm md:text-base">Ən həyəcanlı qorxu seanslarına bax və onlayn rezerv et</p>
@@ -202,15 +179,6 @@
                     </div>
                 </div>
 
-            </div>
-        </section>
-
-        <!-- CINEMA BÖLMƏSİ -->
-        <section id="cinema-tab" class="tab-content">
-            <div class="text-center my-12 py-12 bg-zinc-900/50 border border-zinc-800 rounded-2xl">
-                <i class="fa-solid fa-video text-5xl text-red-600 mb-4 animate-bounce"></i>
-                <h2 class="font-horror text-4xl text-white mb-2">KABUS CINEMA</h2>
-                <p class="text-zinc-400 text-sm max-w-md mx-auto">Tezliklə! Xüsusi horror kino seanslarımız və atmosferik kino zalımız təqdim olunacaq.</p>
             </div>
         </section>
 
@@ -308,28 +276,6 @@
 
     <!-- SKRİPT LOGİKASI -->
     <script>
-        // SƏHİFƏ TAB KEÇİDİ (Oyunlar / Cinema)
-        function switchTab(tabName) {
-            const gamesTab = document.getElementById('games-tab');
-            const cinemaTab = document.getElementById('cinema-tab');
-            const gamesBtn = document.getElementById('tab-games-btn');
-            const cinemaBtn = document.getElementById('tab-cinema-btn');
-
-            if (tabName === 'games') {
-                gamesTab.classList.add('active');
-                cinemaTab.classList.remove('active');
-                
-                gamesBtn.className = "px-5 py-2 rounded-lg text-sm font-bold text-white bg-red-700 transition";
-                cinemaBtn.className = "px-5 py-2 rounded-lg text-sm font-bold text-zinc-400 hover:text-white transition";
-            } else {
-                cinemaTab.classList.add('active');
-                gamesTab.classList.remove('active');
-
-                cinemaBtn.className = "px-5 py-2 rounded-lg text-sm font-bold text-white bg-red-700 transition";
-                gamesBtn.className = "px-5 py-2 rounded-lg text-sm font-bold text-zinc-400 hover:text-white transition";
-            }
-        }
-
         // ŞƏHƏR FİLTRİ
         function filterGamesByCity() {
             const selected = document.getElementById('city-select').value;
