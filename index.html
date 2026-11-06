@@ -92,7 +92,7 @@
             transform: translateX(-50%) translateY(-15px);
         }
 
-        /* Qırmızı Neom Düymələr */
+        /* Qırmızı Neon Düymələr */
         .btn-horror {
             background: linear-gradient(45deg, #80001a, var(--accent-red));
             box-shadow: 0 0 15px var(--accent-glow);
@@ -141,12 +141,6 @@
                     <option value="gence" class="bg-zinc-900 text-white">Gəncə</option>
                 </select>
             </div>
-
-            <!-- Admin Giriş Düyməsi -->
-            <button onclick="openAdminLoginModal()" class="text-zinc-400 hover:text-red-500 text-sm font-semibold transition flex items-center space-x-1">
-                <i class="fa-solid fa-user-shield"></i>
-                <span>Admin Panel</span>
-            </button>
         </div>
     </header>
 
@@ -167,7 +161,7 @@
             </div>
         </section>
 
-        <!-- ================= 2. OYUN DETAL SƏHİFƏSİ ================= -->
+        <!-- ================= 2. OYUN DETAL VƏ REZERVA SƏHİFƏSİ ================= -->
         <section id="detail-page" class="page-view">
             <button onclick="navigateTo('home-page')" class="mb-6 flex items-center text-zinc-400 hover:text-red-500 transition font-bold">
                 <i class="fa-solid fa-arrow-left mr-2"></i> Geri Qayıt
@@ -178,15 +172,9 @@
                 <div class="lg:col-span-2 space-y-6">
                     <h2 id="detail-title" class="font-horror text-4xl md:text-5xl text-red-600 tracking-wide"></h2>
                     
-                    <!-- Video / Poster Qutusu -->
-                    <div class="relative w-full h-72 md:h-96 rounded-xl overflow-hidden border border-red-900/50 shadow-2xl">
-                        <iframe id="detail-video" class="w-full h-full" src="" title="Game Trailer font-tech" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-
-                    <!-- Haqqında Məlumat -->
-                    <div class="bg-zinc-900/60 border border-zinc-800 p-6 rounded-xl">
-                        <h3 class="text-xl font-bold text-red-500 mb-3 border-b border-zinc-800 pb-2">Oyun Haqqında</h3>
-                        <p id="detail-description" class="text-zinc-300 leading-relaxed text-base"></p>
+                    <!-- Şəkil Qutusu -->
+                    <div class="relative w-full h-72 md:h-96 rounded-xl overflow-hidden border border-red-900/50 shadow-2xl bg-zinc-900">
+                        <img id="detail-image" src="" alt="Oyun Şəkli" class="w-full h-full object-cover">
                     </div>
 
                     <!-- Xüsusiyyətlər -->
@@ -202,9 +190,9 @@
                             <div id="detail-duration" class="font-bold text-white"></div>
                         </div>
                         <div class="bg-zinc-900/80 p-4 rounded-lg border border-zinc-800">
-                            <i class="fa-solid fa-skull text-red-500 text-2xl mb-1"></i>
-                            <div class="text-xs text-zinc-400">Qorxu Səviyyəsi</div>
-                            <div id="detail-scare" class="font-bold text-red-500"></div>
+                            <i class="fa-solid fa-star text-yellow-500 text-2xl mb-1"></i>
+                            <div class="text-xs text-zinc-400">Reytinq</div>
+                            <div id="detail-rating" class="font-bold text-yellow-500"></div>
                         </div>
                     </div>
                 </div>
@@ -256,139 +244,48 @@
             </div>
         </section>
 
-        <!-- ================= 3. ADMİN PANEL SƏHİFƏSİ ================= -->
-        <section id="admin-page" class="page-view">
-            <div class="flex flex-wrap items-center justify-between border-b border-zinc-800 pb-4 mb-6 gap-4">
-                <div>
-                    <h2 class="font-tech text-3xl font-bold text-white flex items-center">
-                        <i class="fa-solid fa-user-gear text-red-600 mr-3"></i> ADMİN PANEL
-                    </h2>
-                    <p id="admin-branch-title" class="text-red-500 font-semibold text-lg"></p>
-                </div>
-                <button onclick="logoutAdmin()" class="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded text-sm transition">
-                    <i class="fa-solid fa-right-from-bracket mr-1"></i> Çıxış Et
-                </button>
-            </div>
-
-            <!-- Rezervlərin Cədvəli -->
-            <div class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden shadow-xl">
-                <div class="p-4 border-b border-zinc-800 flex justify-between items-center bg-zinc-950">
-                    <h3 class="font-bold text-lg text-zinc-200">Gələn Rezervasiyalar</h3>
-                    <span id="reservation-count" class="text-xs bg-red-950 text-red-400 px-3 py-1 rounded-full border border-red-800 font-bold"></span>
-                </div>
-
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-zinc-950/80 text-zinc-400 text-xs uppercase border-b border-zinc-800">
-                                <th class="p-4">Müştəri</th>
-                                <th class="p-4">Oyun</th>
-                                <th class="p-4">Tarix / Saat</th>
-                                <th class="p-4">Nəfər</th>
-                                <th class="p-4">Status</th>
-                                <th class="p-4 text-center">Əməliyyat</th>
-                            </tr>
-                        </thead>
-                        <tbody id="admin-table-body" class="divide-y divide-zinc-800 text-sm">
-                            <!-- JS dinamik doldurur -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
     </main>
-
-    <!-- ADMİN KODU DAXİL ETMƏ MODALI -->
-    <div id="admin-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-zinc-900 border border-red-900/60 p-6 rounded-xl max-w-sm w-full shadow-2xl relative">
-            <button onclick="closeAdminLoginModal()" class="absolute top-3 right-3 text-zinc-500 hover:text-white">
-                <i class="fa-solid fa-xmark text-xl"></i>
-            </button>
-            <h3 class="font-horror text-3xl text-red-600 text-center mb-2">ADMİN GİRİŞİ</h3>
-            <p class="text-xs text-zinc-400 text-center mb-6">Filialınızın xüsusi giriş kodunu yazın</p>
-            
-            <form onsubmit="handleAdminLogin(event)">
-                <input type="password" id="admin-code-input" placeholder="Giriş Kodunu daxil edin..." class="w-full bg-black border border-zinc-700 rounded p-3 text-white text-center text-lg focus:outline-none focus:border-red-600 mb-4 tracking-widest" required>
-                <button type="submit" class="w-full btn-horror text-white font-bold py-2.5 rounded text-base">GİRİŞ ET</button>
-            </form>
-        </div>
-    </div>
 
     <!-- FOOTER -->
     <footer class="border-t border-zinc-900 py-6 text-center text-xs text-zinc-500 mt-12">
         <p>© 2026 QORXUEVI.AZ — Bütün hüquqlar qorunur.</p>
     </footer>
 
-    <!-- JS LOGİKA VƏ MƏLUMAT BAZASI -->
+    <!-- JS LOGİKA VƏ REAL MƏLUMAT BAZASI -->
     <script>
-        // MƏLUMAT BAZASI (Oyunlar)
+        // YALNIZ İSTƏNİLƏN MƏLUMATLAR VƏ TEHLUKE.PNG SURATI
         const gamesData = [
             {
-                id: "kabus-gence",
-                title: "Kabus: Gəncə Fəlakəti",
-                city: "gence",
-                cityLabel: "Gəncə",
-                branchCode: "kabusgence97",
-                players: "2 - 8 Nəfər",
-                duration: "60 Dəqiqə",
-                scareLevel: "9 / 10",
-                price: "50 AZN",
-                image: "https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=800&q=80",
-                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-                description: "Tərk edilmiş qədim tibb məntəqəsində baş verən gizli təcrübələr və sirli yoxolmalar. Komandanızla birlikdə buradan sağ çıxa biləcəksinizmi?"
-            },
-            {
-                id: "tarqovu-lanət",
-                title: "Tarqovu: Qaranlıq Zirzəmi",
-                city: "baku",
-                cityLabel: "Bakı (Tarqovu)",
-                branchCode: "kabustarqovu97",
-                players: "3 - 10 Nəfər",
-                duration: "75 Dəqiqə",
-                scareLevel: "10 / 10",
-                price: "60 AZN",
-                image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
-                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-                description: "Bakının mərkəzində, yerin 10 metr dərinliyində unudulmuş zindandan dəhşətli fəryadlar gəlir. Daxil olun və canlı aktyorlarla bu dəhşəti yaşayın."
-            },
-            {
-                id: "panika-baku",
-                title: "Panika: Ruhi Xəstəxana",
+                id: "tehluke",
+                title: "Təhlükə",
+                rating: "⭐⭐⭐⭐⭐",
+                duration: "Zaman limitsiz",
+                players: "2-20",
                 city: "baku",
                 cityLabel: "Bakı",
-                branchCode: "panika97",
-                players: "2 - 6 Nəfər",
-                duration: "60 Dəqiqə",
-                scareLevel: "8 / 10",
-                price: "45 AZN",
-                image: "https://images.unsplash.com/photo-1542282811-943ef1a977c3?auto=format&fit=crop&w=800&q=80",
-                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-                description: "1980-ci ildə bağlanan psixiatriya xəstəxanasının sirri hələ də açılmayıb. Qorxu hissinizə qalib gəlin və tapmacaları həll edin."
+                image: "Tehluke.PNG"
             },
             {
-                id: "dovran-gence",
-                title: "Gəncə: İblisin Evi",
-                city: "gence",
-                cityLabel: "Gəncə",
-                branchCode: "kabusgence97",
-                players: "4 - 8 Nəfər",
-                duration: "60 Dəqiqə",
-                scareLevel: "9.5 / 10",
-                price: "55 AZN",
-                image: "https://images.unsplash.com/photo-1514539079130-25950c84af65?auto=format&fit=crop&w=800&q=80",
-                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-                description: "Evə daxil olduğunuz an qapılar arxanızca bağlanacaq. Buradan çıxışın tək yolu dəhlizlərdəki gizli işarələri tapmaqdır."
+                id: "dont-breathe",
+                title: "Dont Breathe (Nəfəsini Tut)",
+                rating: "⭐⭐⭐⭐⭐",
+                duration: "60 dq",
+                players: "2-8",
+                city: "baku",
+                cityLabel: "Bakı",
+                image: "https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "gizlen-qac",
+                title: "Gizlən qaç",
+                rating: "⭐⭐⭐⭐⭐",
+                duration: "Zaman limitsiz",
+                players: "2-20",
+                city: "baku",
+                cityLabel: "Bakı",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80"
             }
         ];
-
-        // İLKİN REZERVASİYA MƏLUMATLARI (Localstorage ilə sinxronlaşır)
-        let reservations = JSON.parse(localStorage.getItem('qorxu_reservations')) || [
-            { id: 1, gameId: 'kabus-gence', name: 'Rauf Əliyev', phone: '0501112233', date: '2026-11-10', time: '19:00', count: '5 Nəfər', status: 'Gəldi' },
-            { id: 2, gameId: 'tarqovu-lanət', name: 'Elvin Məmmədov', phone: '0704445566', date: '2026-11-12', time: '21:30', count: '4 Nəfər', status: 'Gəlmədi' }
-        ];
-
-        let activeAdminBranch = null; // Hazırda daxil olmuş adminin filialı
 
         // SƏHİFƏ YÜKLƏNƏNDƏ
         window.addEventListener('DOMContentLoaded', () => {
@@ -396,7 +293,6 @@
             setupDateInput();
         });
 
-        // Nümunəvi tarix təyini
         function setupDateInput() {
             const dateInput = document.getElementById('book-date');
             if(dateInput) {
@@ -405,7 +301,7 @@
             }
         }
 
-        // NAVIGATION (Səhifələr Arası Animasiyalı Keçid)
+        // SƏHİFƏLƏR ARASI KEÇİD
         function navigateTo(pageId) {
             const pages = document.querySelectorAll('.page-view');
             pages.forEach(p => p.classList.remove('active'));
@@ -420,7 +316,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // OYUNLARI SƏHİFƏDƏ GÖSTƏRMƏK (2-li Setka)
+        // OYUNLARI GÖSTƏRMƏK (2-li Grid)
         function renderGames(cityFilter = 'all') {
             const container = document.getElementById('games-container');
             container.innerHTML = '';
@@ -443,17 +339,15 @@
                     </div>
 
                     <div class="p-5">
-                        <h3 class="font-tech text-xl font-bold text-white mb-2">${game.title}</h3>
-                        <p class="text-zinc-400 text-sm line-clamp-2">${game.description}</p>
+                        <h3 class="font-tech text-2xl font-bold text-white mb-2">${game.title}</h3>
+                        <div class="text-yellow-500 text-sm mb-1">${game.rating}</div>
                     </div>
 
-                    <!-- Hover Pop-Up (Üzərinə gələndə çıxan mini qutu) -->
+                    <!-- Hover Pop-Up -->
                     <div class="hover-info-box p-4 rounded-lg shadow-2xl text-center">
                         <div class="grid grid-cols-2 gap-2 text-xs font-semibold text-zinc-300">
-                            <div><i class="fa-solid fa-users text-red-500 mr-1"></i> ${game.players}</div>
+                            <div><i class="fa-solid fa-users text-red-500 mr-1"></i> Adam: ${game.players}</div>
                             <div><i class="fa-solid fa-clock text-red-500 mr-1"></i> ${game.duration}</div>
-                            <div><i class="fa-solid fa-skull text-red-500 mr-1"></i> Qorxu: ${game.scareLevel}</div>
-                            <div><i class="fa-solid fa-tag text-red-500 mr-1"></i> ${game.price}</div>
                         </div>
                     </div>
                 `;
@@ -461,32 +355,32 @@
             });
         }
 
-        // ŞƏHƏR FİLTRİ
         function filterGamesByCity() {
             const selectedCity = document.getElementById('city-select').value;
             renderGames(selectedCity);
         }
 
-        // OYUN DETAL SƏHİFƏSİNİ AÇMAQ
+        // OYUN DETAL / REZERVA SƏHİFƏSİ
         function openGameDetail(gameId) {
             const game = gamesData.find(g => g.id === gameId);
             if(!game) return;
 
             document.getElementById('detail-title').innerText = game.title;
-            document.getElementById('detail-description').innerText = game.description;
-            document.getElementById('detail-players').innerText = game.players;
+            document.getElementById('detail-players').innerText = game.players + " Nəfər";
             document.getElementById('detail-duration').innerText = game.duration;
-            document.getElementById('detail-scare').innerText = game.scareLevel;
-            document.getElementById('detail-video').src = game.videoUrl;
+            document.getElementById('detail-rating').innerText = game.rating;
+            document.getElementById('detail-image').src = game.image;
             document.getElementById('booking-game-id').value = game.id;
 
             navigateTo('detail-page');
         }
 
-        // REZERVASIYA GÖNDƏRMƏK
+        // REZERVASİYA GÖNDƏRMƏK (Localstorage-ə saklanılır, Admin panel aýry html-den oxuya biler)
         function handleBookingSubmit(e) {
             e.preventDefault();
             
+            let reservations = JSON.parse(localStorage.getItem('qorxu_reservations')) || [];
+
             const newRes = {
                 id: Date.now(),
                 gameId: document.getElementById('booking-game-id').value,
@@ -503,109 +397,6 @@
 
             alert('Təbrik edirik! Rezervasiyanız qeydə alındı.');
             document.getElementById('booking-form').reset();
-            navigateTo('home-page');
-        }
-
-        // ADMİN MODAL KONTROLU
-        function openAdminLoginModal() {
-            document.getElementById('admin-modal').classList.remove('hidden');
-        }
-        function closeAdminLoginModal() {
-            document.getElementById('admin-modal').classList.add('hidden');
-        }
-
-        // ADMİN LOGİN VƏ KODLARIN TƏYİNİ (4 XÜSUSİ KOD)
-        function handleAdminLogin(e) {
-            e.preventDefault();
-            const code = document.getElementById('admin-code-input').value.trim();
-
-            if (code === 'kabusgence97') {
-                activeAdminBranch = { name: "Kabus Gəncə Filialı", code: 'kabusgence97' };
-            } else if (code === 'kabustarqovu97') {
-                activeAdminBranch = { name: "Kabus Tarqovu Filialı", code: 'kabustarqovu97' };
-            } else if (code === 'panika97') {
-                activeAdminBranch = { name: "Panika Filialı", code: 'panika97' };
-            } else if (code === 'admin97') {
-                activeAdminBranch = { name: "Baş İdarəetmə Paneli (Bütün Filiallar)", code: 'all' };
-            } else {
-                alert('Yalnış Giriş Kodu!');
-                return;
-            }
-
-            closeAdminLoginModal();
-            document.getElementById('admin-code-input').value = '';
-            renderAdminPanel();
-            navigateTo('admin-page');
-        }
-
-        // ADMİN PANELİ RENDER ETMƏK
-        function renderAdminPanel() {
-            document.getElementById('admin-branch-title').innerText = activeAdminBranch.name;
-            const tableBody = document.getElementById('admin-table-body');
-            tableBody.innerHTML = '';
-
-            // Filtrasiya
-            let filteredRes = reservations;
-            if (activeAdminBranch.code !== 'all') {
-                const branchGameIds = gamesData
-                    .filter(g => g.branchCode === activeAdminBranch.code)
-                    .map(g => g.id);
-                filteredRes = reservations.filter(r => branchGameIds.includes(r.gameId));
-            }
-
-            document.getElementById('reservation-count').innerText = `${filteredRes.length} Rezervasiya`;
-
-            if(filteredRes.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-zinc-500">Heç bir rezervasiya tapılmadı.</td></tr>`;
-                return;
-            }
-
-            filteredRes.forEach(res => {
-                const game = gamesData.find(g => g.id === res.gameId);
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-zinc-800/40 transition";
-
-                let statusBadge = 'bg-yellow-950 text-yellow-400 border-yellow-800';
-                if(res.status === 'Gəldi') statusBadge = 'bg-green-950 text-green-400 border-green-800';
-                if(res.status === 'Gəlmədi') statusBadge = 'bg-red-950 text-red-400 border-red-800';
-
-                tr.innerHTML = `
-                    <td class="p-4">
-                        <div class="font-bold text-white">${res.name}</div>
-                        <div class="text-xs text-zinc-400">${res.phone}</div>
-                    </td>
-                    <td class="p-4 text-zinc-300 font-semibold">${game ? game.title : res.gameId}</td>
-                    <td class="p-4 text-zinc-300">${res.date} / <span class="text-red-400 font-bold">${res.time}</span></td>
-                    <td class="p-4 text-zinc-300">${res.count}</td>
-                    <td class="p-4">
-                        <span class="text-xs px-2.5 py-1 rounded-full border ${statusBadge} font-bold">${res.status}</span>
-                    </td>
-                    <td class="p-4 text-center space-x-2">
-                        <button onclick="updateStatus(${res.id}, 'Gəldi')" class="bg-green-700 hover:bg-green-600 text-white text-xs font-bold px-2.5 py-1.5 rounded transition">
-                            <i class="fa-solid fa-check mr-1"></i> Gəldi
-                        </button>
-                        <button onclick="updateStatus(${res.id}, 'Gəlmədi')" class="bg-red-700 hover:bg-red-600 text-white text-xs font-bold px-2.5 py-1.5 rounded transition">
-                            <i class="fa-solid fa-xmark mr-1"></i> Gəlmədi
-                        </button>
-                    </td>
-                `;
-                tableBody.appendChild(tr);
-            });
-        }
-
-        // REZERVA STATUSUNU YENİLƏMƏK ("Gəldi" / "Gəlmədi")
-        function updateStatus(id, newStatus) {
-            const res = reservations.find(r => r.id === id);
-            if(res) {
-                res.status = newStatus;
-                localStorage.setItem('qorxu_reservations', JSON.stringify(reservations));
-                renderAdminPanel();
-            }
-        }
-
-        // ADMİNDƏN ÇIXIŞ
-        function logoutAdmin() {
-            activeAdminBranch = null;
             navigateTo('home-page');
         }
     </script>
