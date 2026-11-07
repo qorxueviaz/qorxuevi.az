@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oyunlar - Qorxuevi.az</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Iconlar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Montserrat & Creepster -->
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-red: #ff003c;
+            --dark-bg: #070709;
+            --card-bg: #121216;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #e2e8f0;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-horror {
+            font-family: 'Creepster', cursive;
+        }
+
+        /* Glitch & Glow Effekti */
+        .glitch-text {
+            text-shadow: 0 0 12px rgba(255, 0, 60, 0.6), 0 0 24px rgba(255, 0, 60, 0.4);
+            animation: pulseGlow 2.5s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 8px rgba(255, 0, 60, 0.5); }
+            100% { text-shadow: 0 0 25px rgba(255, 0, 60, 0.9), 0 0 35px #ff0000; }
+        }
+
+        .game-card {
+            transition: all 0.3s ease;
+        }
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 0, 60, 0.25);
+        }
+
+        /* Xüsusi Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070709;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a0008;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-red);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- ÜST NAVBAR -->
+    <header class="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b border-red-900/40 px-4 py-4">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <!-- Logo: Qorxu Evi.Az -->
+            <a href="index.html" class="flex items-center space-x-2 text-decoration-none">
+                <i class="fa-solid fa-ghost text-red-600 text-2xl md:text-3xl animate-pulse"></i>
+                <span class="font-horror text-2xl md:text-3xl tracking-widest text-red-600 glitch-text">QORXUEVI.AZ</span>
+            </a>
+
+            <!-- Daxil Ol Düyməsi -->
+            <div class="flex items-center space-x-3">
+                <button onclick="openAuthModal()" class="bg-gradient-to-r from-red-900 to-red-600 hover:from-red-800 hover:to-red-500 text-white font-bold px-5 py-2 rounded-full text-sm transition shadow-lg shadow-red-950/50">
+                    Daxil ol
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ƏSAS MƏZMUN -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full space-y-8">
+        
+        <!-- Başlıq -->
+        <div class="text-center space-y-2">
+            <h1 class="font-horror text-4xl md:text-6xl text-red-600 tracking-wider">BÜTÜN OYUNLAR</h1>
+            <p class="text-zinc-400 text-sm md:text-base">Seçiminizi edin və qorxulu macəraya başlayın</p>
+        </div>
+
+        <!-- Oyunların Səliqəli Grid Düzülüşü (2-li) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-6">
+            
+            <!-- Oyun 1 -->
+            <div class="game-card bg-zinc-900/90 border border-zinc-800 rounded-2xl overflow-hidden flex flex-col justify-between shadow-lg">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="Tehluke.PNG" alt="Təhlükə" class="w-full h-full object-cover">
+                    <span class="absolute top-3 left-3 bg-red-950/90 text-red-400 text-xs px-3 py-1 rounded-full border border-red-800 font-semibold">
+                        Bakı (Tarqovu)
+                    </span>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-2xl font-bold text-white">Təhlükə</h3>
+                        <span class="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <div class="flex items-center space-x-4 text-xs font-semibold text-zinc-400">
+                        <span><i class="fa-solid fa-users text-red-500 mr-1.5"></i>2-20 Nəfər</span>
+                        <span><i class="fa-solid fa-clock text-red-500 mr-1.5"></i>Zaman limitsiz</span>
+                    </div>
+                    <a href="tehluke.html" class="block text-center bg-gradient-to-r from-red-900 to-red-600 hover:from-red-800 text-white font-bold py-3.5 rounded-xl text-sm transition shadow-lg shadow-red-950">
+                        ƏTRAFLI VƏ REZERV ET
+                    </a>
+                </div>
+            </div>
+
+            <!-- Oyun 2 -->
+            <div class="game-card bg-zinc-900/90 border border-zinc-800 rounded-2xl overflow-hidden flex flex-col justify-between shadow-lg">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=800&q=80" alt="Dont Breathe" class="w-full h-full object-cover">
+                    <span class="absolute top-3 left-3 bg-red-950/90 text-red-400 text-xs px-3 py-1 rounded-full border border-red-800 font-semibold">
+                        Bakı
+                    </span>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-2xl font-bold text-white">Dont Breathe</h3>
+                        <span class="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <div class="flex items-center space-x-4 text-xs font-semibold text-zinc-400">
+                        <span><i class="fa-solid fa-users text-red-500 mr-1.5"></i>2-8 Nəfər</span>
+                        <span><i class="fa-solid fa-clock text-red-500 mr-1.5"></i>60 dq</span>
+                    </div>
+                    <a href="dontbreathe.html" class="block text-center bg-gradient-to-r from-red-900 to-red-600 hover:from-red-800 text-white font-bold py-3.5 rounded-xl text-sm transition shadow-lg shadow-red-950">
+                        ƏTRAFLI VƏ REZERV ET
+                    </a>
+                </div>
+            </div>
+
+            <!-- Oyun 3 -->
+            <div class="game-card bg-zinc-900/90 border border-zinc-800 rounded-2xl overflow-hidden flex flex-col justify-between shadow-lg">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt="Gizlən qaç" class="w-full h-full object-cover">
+                    <span class="absolute top-3 left-3 bg-red-950/90 text-red-400 text-xs px-3 py-1 rounded-full border border-red-800 font-semibold">
+                        Bakı
+                    </span>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-2xl font-bold text-white">Gizlən qaç</h3>
+                        <span class="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <div class="flex items-center space-x-4 text-xs font-semibold text-zinc-400">
+                        <span><i class="fa-solid fa-users text-red-500 mr-1.5"></i>2-20 Nəfər</span>
+                        <span><i class="fa-solid fa-clock text-red-500 mr-1.5"></i>Zaman limitsiz</span>
+                    </div>
+                    <a href="gizlenqac.html" class="block text-center bg-gradient-to-r from-red-900 to-red-600 hover:from-red-800 text-white font-bold py-3.5 rounded-xl text-sm transition shadow-lg shadow-red-950">
+                        ƏTRAFLI VƏ REZERV ET
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- DAXİL OL / HESAB YARAT POP-UP MODALI -->
+    <div id="auth-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-zinc-900 border border-red-900/60 p-6 rounded-2xl max-w-sm w-full shadow-2xl relative text-center space-y-5">
+            <button onclick="closeAuthModal()" class="absolute top-3 right-3 text-zinc-500 hover:text-white">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            
+            <h3 class="font-horror text-3xl text-red-600 tracking-wider">Xoş Gəlmisiniz</h3>
+            <p class="text-xs text-zinc-400">Davam etmək üçün seçiminizi edin</p>
+
+            <div class="space-y-3 pt-2">
+                <a href="giris.html" class="block w-full bg-gradient-to-r from-red-900 to-red-600 hover:from-red-800 text-white font-bold py-3 rounded-xl text-sm transition shadow-lg shadow-red-950">
+                    Daxil ol
+                </a>
+                <a href="daxil.html" class="block w-full bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 rounded-xl text-sm transition border border-zinc-700">
+                    Hesab yarat
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-red-900/30 pt-10 pb-6 mt-16 text-zinc-300">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+            
+            <!-- Brend Haqqında -->
+            <div class="md:col-span-1 space-y-3">
+                <h3 class="font-horror text-2xl text-red-600 tracking-wider">KABUS & PANIKA</h3>
+                <p class="text-xs text-zinc-400 leading-relaxed">
+                    Azərbaycanın ən böyük və qorxulu ssenarilərinə malik <strong class="text-zinc-200">Kabus və Panika Qorxu Evlərinin rəsmi iş birliyi</strong> platformasıdır.
+                </p>
+            </div>
+
+            <!-- WhatsApp Əlaqə -->
+            <div class="space-y-3">
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider flex items-center">
+                    <i class="fa-brands fa-whatsapp text-green-500 text-lg mr-2"></i> WhatsApp Əlaqə
+                </h4>
+                <ul class="space-y-2 text-xs">
+                    <li>
+                        <span class="text-zinc-500 block">Kabus:</span>
+                        <a href="https://wa.me/994558449167" target="_blank" class="hover:text-green-400 font-semibold transition">055 844 91 67</a>
+                    </li>
+                    <li>
+                        <span class="text-zinc-500 block">Panika:</span>
+                        <a href="https://wa.me/994516335321" target="_blank" class="hover:text-green-400 font-semibold transition">051 633 53 21</a> / 
+                        <a href="https://wa.me/994997044666" target="_blank" class="hover:text-green-400 font-semibold transition">099 704 46 66</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Instagram Səhifələri -->
+            <div class="space-y-3">
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider flex items-center">
+                    <i class="fa-brands fa-instagram text-pink-500 text-lg mr-2"></i> Instagram
+                </h4>
+                <ul class="space-y-2 text-xs">
+                    <li>
+                        <a href="https://www.instagram.com/kabusqorxuevi?dlrf=MTgwbjV3cHBqa3FoNA==" target="_blank" class="hover:text-pink-400 transition flex items-center">
+                            <i class="fa-solid fa-angle-right text-red-600 mr-1"></i> Kabus Qorxu Evi
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/kabusqorxuevigence?exln=MTh4OGJsdGg2OGw5aQ==" target="_blank" class="hover:text-pink-400 transition flex items-center">
+                            <i class="fa-solid fa-angle-right text-red-600 mr-1"></i> Kabus Gəncə
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/panikaqorxuevi?srtk=ZGZobmY0NnhoMmt2" target="_blank" class="hover:text-pink-400 transition flex items-center">
+                            <i class="fa-solid fa-angle-right text-red-600 mr-1"></i> Panika Qorxu Evi
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- TikTok Səhifələri -->
+            <div class="space-y-3">
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider flex items-center">
+                    <i class="fa-brands fa-tiktok text-cyan-400 text-lg mr-2"></i> TikTok
+                </h4>
+                <ul class="space-y-2 text-xs">
+                    <li>
+                        <a href="https://www.tiktok.com/@kabusqorxuevi?_r=1&_t=ZS-9BAny520Wtl" target="_blank" class="hover:text-cyan-400 transition flex items-center">
+                            <i class="fa-solid fa-angle-right text-red-600 mr-1"></i> Kabus TikTok
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.tiktok.com/@kabusqorxuevigence?_r=1&_t=ZS-9BAnydoBYXO" target="_blank" class="hover:text-cyan-400 transition flex items-center">
+                            <i class="fa-solid fa-angle-right text-red-600 mr-1"></i> Kabus Gəncə TikTok
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.tiktok.com/@kabuscinema?_r=1&_t=ZS-9BAo0h09UtI" target="_blank" class="hover:text-cyan-400 transition flex items-center">
+                            <i class="fa-solid fa-angle-right text-red-600 mr-1"></i> Kabus Cinema TikTok
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.tiktok.com/@panikaqorxuevi?_r=1&_t=ZS-9BAo1Hkwgbu" target="_blank" class="hover:text-cyan-400 transition flex items-center">
+                            <i class="fa-solid fa-angle-right text-red-600 mr-1"></i> Panika TikTok
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="border-t border-zinc-900 pt-6 text-center text-xs text-zinc-500">
+            <p>© 2026 QORXUEVI.AZ — Kabus & Panika İş Birliyi. Bütün hüquqlar qorunur.</p>
+        </div>
+    </footer>
+
+    <!-- SKRİPT LOGİKASI -->
+    <script>
+        // Modal İdarəetməsi
+        function openAuthModal() {
+            document.getElementById('auth-modal').classList.remove('hidden');
+        }
+        function closeAuthModal() {
+            document.getElementById('auth-modal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
