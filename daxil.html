@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hesab Yarat - Qorxuevi.az</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Montserrat', sans-serif !important; }
+        .font-horror { font-family: 'Creepster', cursive !important; }
+        body { background-color: #070709; color: #e2e8f0; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="bg-zinc-900/90 border border-red-900/50 p-8 rounded-3xl max-w-md w-full shadow-2xl relative space-y-6">
+        <a href="index.html" class="absolute top-4 right-4 text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></a>
+        
+        <div class="text-center space-y-2">
+            <h1 class="font-horror text-4xl text-red-600 tracking-wider">HESAB YARAT</h1>
+            <p class="text-xs text-zinc-400">Yeni hesab açaraq dərhal rezervasiyalara başla</p>
+        </div>
+
+        <form onsubmit="handleRegister(event)" class="space-y-4">
+            <div>
+                <label class="block text-xs text-zinc-400 uppercase font-semibold mb-1">Ad və Soyad</label>
+                <input type="text" required placeholder="Əli Əliyev" class="w-full bg-black/60 border border-zinc-800 rounded-xl p-3.5 text-white focus:outline-none focus:border-red-600 transition text-sm">
+            </div>
+            <div>
+                <label class="block text-xs text-zinc-400 uppercase font-semibold mb-1">Telefon nömrəsi</label>
+                <input type="tel" required placeholder="050 123 45 67" class="w-full bg-black/60 border border-zinc-800 rounded-xl p-3.5 text-white focus:outline-none focus:border-red-600 transition text-sm">
+            </div>
+            <div>
+                <label class="block text-xs text-zinc-400 uppercase font-semibold mb-1">Şifrə</label>
+                <input type="password" required placeholder="••••••••" class="w-full bg-black/60 border border-zinc-800 rounded-xl p-3.5 text-white focus:outline-none focus:border-red-600 transition text-sm">
+            </div>
+            <button type="submit" class="w-full bg-gradient-to-r from-red-900 to-red-600 hover:from-red-800 text-white font-bold py-3.5 rounded-xl transition text-sm shadow-lg shadow-red-950">
+                Qeydiyyatdan Keç
+            </button>
+        </form>
+
+        <div class="text-center text-xs text-zinc-500">
+            Artıq hesabınız var? <a href="giris.html" class="text-red-500 font-semibold hover:underline">Daxil ol</a>
+        </div>
+    </div>
+    <script>
+        function handleRegister(e) {
+            e.preventDefault();
+            alert('Qeydiyyat uğurla tamamlandı!');
+            window.location.href = 'giris.html';
+        }
+    </script>
+</body>
+</html>
