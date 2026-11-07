@@ -4,17 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - Qorxuevi.az</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Iconlar -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Montserrat & Creepster -->
     <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        * { font-family: 'Montserrat', sans-serif !important; }
-        .font-horror { font-family: 'Creepster', cursive !important; }
-        body { background-color: #070709; color: #e2e8f0; overflow-x: hidden; }
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: #070709; }
-        ::-webkit-scrollbar-thumb { background: #2a0008; border-radius: 4px; }
+        * {
+            font-family: 'Montserrat', sans-serif !important;
+        }
+
+        .font-horror {
+            font-family: 'Creepster', cursive !important;
+        }
+
+        body {
+            background-color: #070709;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Xüsusi Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070709;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a0008;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff003c;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
@@ -23,108 +56,161 @@
     <header class="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b border-red-900/40 px-6 py-4">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <i class="fa-solid fa-user-shield text-red-600 text-2xl"></i>
-                <span class="font-horror text-2xl tracking-wider text-red-600">ADMİN PANEL</span>
+                <i class="fa-solid fa-user-shield text-red-600 text-2xl animate-pulse"></i>
+                <span class="font-horror text-2xl tracking-widest text-red-600">KABUS & PANIKA ADMİN</span>
             </div>
-            <a href="index.html" class="bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2">
-                <i class="fa-solid fa-house"></i>
-                <span>Sayta qayıt</span>
-            </a>
+            <div class="text-xs text-zinc-400 font-medium">
+                İdarəetmə Paneli v2.0
+            </div>
         </div>
     </header>
 
-    <!-- ƏSAS MƏZMUN -->
-    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full space-y-6">
+    <!-- ƏSAS MƏZMUN (BOLMƏLƏR) -->
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full grid grid-cols-1 md:grid-cols-4 gap-8">
         
-        <!-- Statistika Kartları -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-zinc-900/80 border border-zinc-800 p-6 rounded-2xl flex items-center space-x-4 shadow-lg">
-                <div class="p-4 bg-red-950/60 border border-red-800 text-red-500 rounded-xl text-2xl">
-                    <i class="fa-solid fa-users"></i>
-                </div>
-                <div>
-                    <div class="text-xs text-zinc-400 font-semibold uppercase">Ümumi Rezervasiyalar</div>
-                    <div id="total-count" class="text-3xl font-extrabold text-white">0</div>
-                </div>
+        <!-- Sol tərəf: Bölmələr (Tabs) -->
+        <div class="md:col-span-1 space-y-3">
+            <div class="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-4 space-y-2 shadow-xl">
+                <h3 class="text-xs uppercase font-extrabold text-zinc-500 tracking-wider px-3 mb-2">Menü</h3>
+                
+                <button onclick="switchTab('users')" id="btn-users" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-bold text-sm transition bg-red-950 text-red-400 border border-red-900/60 shadow-lg">
+                    <i class="fa-solid fa-users text-lg"></i>
+                    <span>İstifadəçilər</span>
+                </button>
+
+                <button onclick="switchTab('reservations')" id="btn-reservations" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-bold text-sm transition text-zinc-400 hover:bg-zinc-800 hover:text-white">
+                    <i class="fa-solid fa-calendar-check text-lg"></i>
+                    <span>Rezervlər</span>
+                </button>
+
+                <button onclick="switchTab('ads')" id="btn-ads" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-bold text-sm transition text-zinc-400 hover:bg-zinc-800 hover:text-white">
+                    <i class="fa-solid fa-rectangle-ad text-lg"></i>
+                    <span>Reklamlar</span>
+                </button>
             </div>
         </div>
 
-        <!-- Müştərilər / Qeydiyyatlar Cədvəli -->
-        <div class="bg-zinc-900/90 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl">
-            <div class="p-5 border-b border-zinc-800 flex justify-between items-center bg-black/40">
-                <h3 class="font-bold text-lg text-white flex items-center">
-                    <i class="fa-solid fa-clipboard-list text-red-600 mr-2"></i> Qeydiyyatdan Keçən Müştərilər
-                </h3>
-                <button onclick="loadReservations()" class="text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-3 py-1.5 rounded-lg transition">
-                    <i class="fa-solid fa-rotate mr-1"></i> Yenilə
-                </button>
-            </div>
+        <!-- Sağ tərəf: Aktiv Bölmənin Məlumatları -->
+        <div class="md:col-span-3 space-y-6">
+            
+            <!-- 1. İSTİFADƏÇİLƏR BÖLMƏSİ -->
+            <section id="tab-users" class="tab-content active space-y-6">
+                <div class="bg-zinc-900/90 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl">
+                    <div class="p-5 border-b border-zinc-800 flex justify-between items-center bg-black/40">
+                        <h3 class="font-bold text-lg text-white flex items-center">
+                            <i class="fa-solid fa-users text-red-600 mr-2"></i> Qeydiyyatdan Keçən İstifadəçilər
+                        </h3>
+                        <button onclick="loadUsers()" class="text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-3 py-1.5 rounded-lg transition">
+                            <i class="fa-solid fa-rotate mr-1"></i> Yenilə
+                        </button>
+                    </div>
 
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="bg-black/60 text-zinc-400 text-xs uppercase border-b border-zinc-800">
-                            <th class="p-4">Müştəri Adı</th>
-                            <th class="p-4">Telefon</th>
-                            <th class="p-4">Oyun / Seans</th>
-                            <th class="p-4">Tarix / Saat</th>
-                            <th class="p-4">Nəfər</th>
-                            <th class="p-4 text-center">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="admin-table-body" class="divide-y divide-zinc-800 text-sm">
-                        <!-- JS vasitəsilə doldurulur -->
-                    </tbody>
-                </table>
-            </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-black/60 text-zinc-400 text-xs uppercase border-b border-zinc-800">
+                                    <th class="p-4">Ad və Soyad</th>
+                                    <th class="p-4">Telefon Nömrəsi</th>
+                                    <th class="p-4">Qeydiyyat Tarixi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-table-body" class="divide-y divide-zinc-800 text-sm">
+                                <!-- JS vasitəsilə dolsun -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. REZERVLER BÖLMƏSİ -->
+            <section id="tab-reservations" class="tab-content space-y-6">
+                <div class="bg-zinc-900/90 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl">
+                    <div class="p-5 border-b border-zinc-800 flex justify-between items-center bg-black/40">
+                        <h3 class="font-bold text-lg text-white flex items-center">
+                            <i class="fa-solid fa-calendar-check text-red-600 mr-2"></i> Rezervasiya Siyahısı
+                        </h3>
+                        <button onclick="loadReservations()" class="text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-3 py-1.5 rounded-lg transition">
+                            <i class="fa-solid fa-rotate mr-1"></i> Yenilə
+                        </button>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-black/60 text-zinc-400 text-xs uppercase border-b border-zinc-800">
+                                    <th class="p-4">Müştəri</th>
+                                    <th class="p-4">Telefon</th>
+                                    <th class="p-4">Oyun</th>
+                                    <th class="p-4">Tarix / Saat</th>
+                                    <th class="p-4">Nəfər</th>
+                                    <th class="p-4 text-center">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reservations-table-body" class="divide-y divide-zinc-800 text-sm">
+                                <!-- JS vasitəsilə dolsun -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. REKLAMLAR BÖLMƏSİ -->
+            <section id="tab-ads" class="tab-content space-y-6">
+                <div class="bg-zinc-900/90 border border-zinc-800 rounded-2xl p-6 shadow-2xl space-y-4">
+                    <h3 class="font-bold text-lg text-white flex items-center border-b border-zinc-800 pb-3">
+                        <i class="fa-solid fa-rectangle-ad text-red-600 mr-2"></i> Reklam və Slayder İdarəetməsi
+                    </h3>
+                    <p class="text-xs text-zinc-400">Tezliklə buradan ana səhifədəki reklam slaydlarını əlavə edib silə biləcəksiniz.</p>
+                </div>
+            </section>
+
         </div>
 
     </main>
 
     <!-- FOOTER -->
     <footer class="bg-black border-t border-red-900/30 py-6 text-center text-xs text-zinc-500">
-        <p>© 2026 QORXUEVI.AZ — Admin İdarəetmə Paneli.</p>
+        <p>© 2026 QORXUEVI.AZ — Admin Panel.</p>
     </footer>
 
-    <!-- SKRİPT -->
+    <!-- SKRİPT LOGİKASI -->
     <script>
         window.addEventListener('DOMContentLoaded', () => {
+            loadUsers();
             loadReservations();
         });
 
-        function loadReservations() {
-            const tableBody = document.getElementById('admin-table-body');
-            tableBody.innerHTML = '';
+        // Tab Keçidləri
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('aside button, .space-y-3 button').forEach(btn => {
+                btn.className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-bold text-sm transition text-zinc-400 hover:bg-zinc-800 hover:text-white";
+            });
 
-            // LocalStorage-dən verilənləri oxuyuruq
-            const reservations = JSON.parse(localStorage.getItem('qorxu_reservations')) || [];
-            
-            document.getElementById('total-count').innerText = reservations.length;
+            document.getElementById('tab-' + tabName).classList.add('active');
+            const activeBtn = document.getElementById('btn-' + tabName);
+            if(activeBtn) {
+                activeBtn.className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-bold text-sm transition bg-red-950 text-red-400 border border-red-900/60 shadow-lg";
+            }
+        }
 
-            if(reservations.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-zinc-500 font-medium">Hələlik heç bir qeydiyyat / rezervasiya yoxdur.</td></tr>`;
+        // Qeydiyyatdan Keçən İstifadəçiləri Yükləmək
+        function loadUsers() {
+            const tbody = document.getElementById('users-table-body');
+            tbody.innerHTML = '';
+
+            // `daxil.html` və ya qeydiyyat formalarından gələn real verilənlər
+            let users = JSON.parse(localStorage.getItem('qorxu_users')) || [
+                { name: "Elvin Məmmədov", phone: "050 123 45 67", date: "2026-06-06" }
+            ];
+
+            if(users.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="3" class="p-8 text-center text-zinc-500 font-medium">Hələlik qeydiyyatdan keçən istifadəçi yoxdur.</td></tr>`;
                 return;
             }
 
-            reservations.reverse().forEach(res => {
+            users.forEach(user => {
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-zinc-800/40 transition";
-
                 tr.innerHTML = `
-                    <td class="p-4 font-bold text-white">${res.name || 'Qeyd olunmayıb'}</td>
-                    <td class="p-4 text-zinc-300">${res.phone || '-'}</td>
-                    <td class="p-4 text-red-400 font-semibold">${res.gameTitle || res.gameId || 'Təhlükə'}</td>
-                    <td class="p-4 text-zinc-300">${res.date} / <span class="text-white font-bold">${res.time}</span></td>
-                    <td class="p-4 text-zinc-300">${res.count || '2-4 Nəfər'}</td>
-                    <td class="p-4 text-center">
-                        <span class="text-xs bg-yellow-950/80 text-yellow-400 border border-yellow-800/60 px-3 py-1 rounded-full font-bold">
-                            ${res.status || 'Gözləmədə'}
-                        </span>
-                    </td>
-                `;
-                tableBody.appendChild(tr);
-            });
-        }
-    </script>
-</body>
-</html>
+                    <td class="p-4 font-bold text
