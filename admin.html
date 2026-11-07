@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Qorxuevi.az</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * { font-family: 'Montserrat', sans-serif !important; }
+        .font-horror { font-family: 'Creepster', cursive !important; }
+        body { background-color: #070709; color: #e2e8f0; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #070709; }
+        ::-webkit-scrollbar-thumb { background: #2a0008; border-radius: 4px; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- ÜST NAVBAR -->
+    <header class="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b border-red-900/40 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-user-shield text-red-600 text-2xl"></i>
+                <span class="font-horror text-2xl tracking-wider text-red-600">ADMİN PANEL</span>
+            </div>
+            <a href="index.html" class="bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2">
+                <i class="fa-solid fa-house"></i>
+                <span>Sayta qayıt</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- ƏSAS MƏZMUN -->
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full space-y-6">
+        
+        <!-- Statistika Kartları -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-zinc-900/80 border border-zinc-800 p-6 rounded-2xl flex items-center space-x-4 shadow-lg">
+                <div class="p-4 bg-red-950/60 border border-red-800 text-red-500 rounded-xl text-2xl">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <div>
+                    <div class="text-xs text-zinc-400 font-semibold uppercase">Ümumi Rezervasiyalar</div>
+                    <div id="total-count" class="text-3xl font-extrabold text-white">0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Müştərilər / Qeydiyyatlar Cədvəli -->
+        <div class="bg-zinc-900/90 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl">
+            <div class="p-5 border-b border-zinc-800 flex justify-between items-center bg-black/40">
+                <h3 class="font-bold text-lg text-white flex items-center">
+                    <i class="fa-solid fa-clipboard-list text-red-600 mr-2"></i> Qeydiyyatdan Keçən Müştərilər
+                </h3>
+                <button onclick="loadReservations()" class="text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-3 py-1.5 rounded-lg transition">
+                    <i class="fa-solid fa-rotate mr-1"></i> Yenilə
+                </button>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-black/60 text-zinc-400 text-xs uppercase border-b border-zinc-800">
+                            <th class="p-4">Müştəri Adı</th>
+                            <th class="p-4">Telefon</th>
+                            <th class="p-4">Oyun / Seans</th>
+                            <th class="p-4">Tarix / Saat</th>
+                            <th class="p-4">Nəfər</th>
+                            <th class="p-4 text-center">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-table-body" class="divide-y divide-zinc-800 text-sm">
+                        <!-- JS vasitəsilə doldurulur -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-red-900/30 py-6 text-center text-xs text-zinc-500">
+        <p>© 2026 QORXUEVI.AZ — Admin İdarəetmə Paneli.</p>
+    </footer>
+
+    <!-- SKRİPT -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            loadReservations();
+        });
+
+        function loadReservations() {
+            const tableBody = document.getElementById('admin-table-body');
+            tableBody.innerHTML = '';
+
+            // LocalStorage-dən verilənləri oxuyuruq
+            const reservations = JSON.parse(localStorage.getItem('qorxu_reservations')) || [];
+            
+            document.getElementById('total-count').innerText = reservations.length;
+
+            if(reservations.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-zinc-500 font-medium">Hələlik heç bir qeydiyyat / rezervasiya yoxdur.</td></tr>`;
+                return;
+            }
+
+            reservations.reverse().forEach(res => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-zinc-800/40 transition";
+
+                tr.innerHTML = `
+                    <td class="p-4 font-bold text-white">${res.name || 'Qeyd olunmayıb'}</td>
+                    <td class="p-4 text-zinc-300">${res.phone || '-'}</td>
+                    <td class="p-4 text-red-400 font-semibold">${res.gameTitle || res.gameId || 'Təhlükə'}</td>
+                    <td class="p-4 text-zinc-300">${res.date} / <span class="text-white font-bold">${res.time}</span></td>
+                    <td class="p-4 text-zinc-300">${res.count || '2-4 Nəfər'}</td>
+                    <td class="p-4 text-center">
+                        <span class="text-xs bg-yellow-950/80 text-yellow-400 border border-yellow-800/60 px-3 py-1 rounded-full font-bold">
+                            ${res.status || 'Gözləmədə'}
+                        </span>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+    </script>
+</body>
+</html>
